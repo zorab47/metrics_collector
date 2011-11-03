@@ -25,7 +25,7 @@ describe MetricsCollector::ModelAdditions do
     end
 
     it "saves the block as a metric instance" do
-      subject.metrics.first.should be_kind_of(MetricsCollector::Metric)
+      subject.metrics[:count].should be_kind_of(MetricsCollector::Metric)
     end
   end
 
@@ -40,6 +40,10 @@ describe MetricsCollector::ModelAdditions do
           0.0
         end
       end
+    end
+
+    it "contains multiple unique metrics" do
+      subject.metrics.size.should == 2
     end
   end
 end

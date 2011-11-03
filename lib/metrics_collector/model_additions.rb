@@ -1,11 +1,11 @@
 module MetricsCollector
   module ModelAdditions
     module ClassMethods
-      @@metrics = []
+      @@metrics = Hash.new
 
       def metric(name, &block)
         MetricsCollector::Collector.monitor(self)
-        @@metrics << MetricsCollector::Metric.new(name, &block)
+        @@metrics[name] = MetricsCollector::Metric.new(name, &block)
       end
 
       def metrics
