@@ -5,7 +5,7 @@ module MetricsCollector
 
       def metric(name, &block)
         MetricsCollector::Collector.monitor(self)
-        @@metrics[name] = MetricsCollector::Metric.new(name, &block)
+        @@metrics[name] = MetricsCollector::Metric.new(self, name, &block)
       end
 
       def metrics

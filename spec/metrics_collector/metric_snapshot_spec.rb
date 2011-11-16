@@ -25,8 +25,8 @@ describe MetricsCollector::MetricSnapshot do
     end
 
     context "collecting the metrics" do
-
-      subject { MetricsCollector::Collector.collect }
+      let(:collection) { MetricsCollector::Collector.collect }
+      subject { collection }
 
       it "has a collection of snapshots" do
         subject.should_not be_empty
@@ -36,12 +36,20 @@ describe MetricsCollector::MetricSnapshot do
         subject.size.should == 1
       end
 
-      it "contains a snapshot for Project counter" do
-        subject.first.keys.should include(:counter)
-      end
+      context "with a metric" do
+        subject { collection.first }
 
-      it "contains a reading from Project counter" do
-        subject.first[:counter].should == 1
+        it "contains a MetricSnapshot" do
+          subject.should be_a(MetricsCollector::MetricSnapshot)
+        end
+
+        it "contains a snapshot for Project counter" do
+          subject.name.should eq(:counter)
+        end
+
+        it "contains a reading from Project counter" do
+          subject.value.should == 1
+        end
       end
     end
   end
