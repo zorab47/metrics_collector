@@ -22,7 +22,6 @@ end
 def run(files_to_run)
   puts("Running: #{files_to_run}")
   system("clear;rspec -cfs #{files_to_run}")
-  no_int_for_you
 end
 
 def run_all_specs
@@ -41,20 +40,16 @@ watch('^spec/support/.*\.rb')   { run_all_specs }
 # Signal Handling
 # --------------------------------------------------
 
-def no_int_for_you
-  @sent_an_int = nil
+# Ctrl-\
+Signal.trap('QUIT') do
+  puts " --- Running all tests ---\n\n"
+  run_all_specs
 end
 
-Signal.trap 'INT' do
-  if @sent_an_int then      
-    puts "   A second INT?  Ok, I get the message.  Shutting down now."
-    exit
-  else
-    puts "   Did you just send me an INT? Ugh.  I'll quit for real if you do it again."
-    @sent_an_int = true
-    Kernel.sleep 1.5
-    run_all_specs
-  end
+# Ctrl-C
+Signal.trap('INT') do
+  puts "\nExiting watchr."
+  abort("\n")
 end
 
 # vim:ft=ruby
