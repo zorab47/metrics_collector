@@ -1,5 +1,5 @@
 module MetricsCollector
-  class MetricSnapshot < ActiveRecord::Base
+  class MetricSnapshot
   end
 end
 

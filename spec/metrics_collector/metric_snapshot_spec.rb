@@ -37,11 +37,11 @@ describe MetricsCollector::MetricSnapshot do
       end
 
       it "contains a snapshot for Project counter" do
-        subject.first.name.should == :counter
+        subject.first.keys.should include(:counter)
       end
 
       it "contains a reading from Project counter" do
-        subject.first.value.should == 1
+        subject.first[:counter].should == 1
       end
     end
   end

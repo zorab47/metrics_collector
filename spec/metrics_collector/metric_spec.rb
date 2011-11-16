@@ -14,8 +14,7 @@ describe MetricsCollector::Metric do
   end
 
   it "creates a snapshot" do
-    MetricsCollector::MetricSnapshot.should_receive(:create).with(:name => :count, :value => 1.0)
-    subject.snapshot
+    subject.snapshot.should == { :count => 1.0 }
   end
 
   it "raises an argument error when no block is given" do

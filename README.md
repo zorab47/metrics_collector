@@ -32,3 +32,5 @@ like to expand this to use other backends such as [StatsD][] or [RRDTool][].
 
 [StatsD]: https://github.com/etsy/statsd
 [RRDTool]: http://oss.oetiker.ch/rrdtool/
+
+vim: syntax=markdown

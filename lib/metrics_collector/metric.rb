@@ -13,7 +13,7 @@ module MetricsCollector
     end
 
     def snapshot
-      MetricsCollector::MetricSnapshot.create(:name => name, :value => evaluate)
+      { name => evaluate }
     end
   end
 end

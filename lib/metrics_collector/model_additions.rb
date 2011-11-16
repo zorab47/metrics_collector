@@ -14,9 +14,3 @@ module MetricsCollector
     end
   end
 end
-
-#if defined? ActiveModel
-#  ActiveModel.class_eval do
-#    include MetricsCollector::ModelAdditions::ClassMethods
-#  end
-#end

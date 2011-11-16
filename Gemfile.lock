@@ -87,7 +87,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord
   metrics_collector!
   rails (~> 3.0.7)
   rspec (~> 2.6.0)
