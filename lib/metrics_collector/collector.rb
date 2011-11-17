@@ -1,21 +1,28 @@
+require 'set'
+require 'singleton'
+
 module MetricsCollector
   class Collector
-    @@monitored_classes = Set.new
+    attr_reader :metrics
 
-    def self.monitor(klass)
-      @@monitored_classes << klass
+    def initialize
+      @metrics = Set.new
     end
 
-    def self.monitored_classes
-      @@monitored_classes
+    def monitor(metric)
+      @metrics << metric
     end
 
-    def self.clear
-      @@monitored_classes = Set.new
+    def clear
+      @metrics.clear
     end
 
-    def self.collect
-      monitored_classes.collect { |klass| klass.metrics.values }.flatten.collect { |metric| metric.snapshot}
+    def collect
+      metrics.collect { |metric| metric.snapshot }
     end
+  end
+
+  class SingletonCollector < Collector
+    include Singleton
   end
 end

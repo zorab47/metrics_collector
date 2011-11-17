@@ -26,6 +26,7 @@ describe MetricsCollector::Metric do
   end
 
   context "when taking a snapshot" do
+
     subject { metric.snapshot }
 
     it "creates a snapshot" do

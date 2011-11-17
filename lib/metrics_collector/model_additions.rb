@@ -1,15 +1,8 @@
 module MetricsCollector
   module ModelAdditions
     module ClassMethods
-      @@metrics = Hash.new
-
-      def metric(name, &block)
-        MetricsCollector::Collector.monitor(self)
-        @@metrics[name] = MetricsCollector::Metric.new(self, name, &block)
-      end
-
-      def metrics
-        @@metrics
+      def metric(name, collector = MetricsCollector::SingletonCollector.instance, &block)
+        collector.monitor(MetricsCollector::Metric.new(self, name, &block))
       end
     end
   end

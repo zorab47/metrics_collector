@@ -1,57 +1,23 @@
 require "spec_helper"
 
 describe MetricsCollector::MetricSnapshot do
-  before(:all) do
-    MetricsCollector::Collector.clear
 
-    Project.metrics.clear
-
-    class Project
-      @@count = 0
-
-      metric :counter do
-        @@count += 1
-      end
-
-      def self.reset
-        @@count = 0
-      end
-    end
+  before do
+    @snapshot = MetricsCollector::MetricSnapshot.new(:name, 1.0)
   end
 
-  context "with a class monitored" do
-    before(:each) do
-      Project.reset
-    end
+  let(:snapshot) { @snapshot }
 
-    context "collecting the metrics" do
-      let(:collection) { MetricsCollector::Collector.collect }
-      subject { collection }
+  it "has a name" do
+    snapshot.name.should eq(:name)
+  end
 
-      it "has a collection of snapshots" do
-        subject.should_not be_empty
-      end
+  it "has a value" do
+    snapshot.value.should eq(1.0)
+  end
 
-      it "contains only one metric" do
-        subject.size.should == 1
-      end
-
-      context "with a metric" do
-        subject { collection.first }
-
-        it "contains a MetricSnapshot" do
-          subject.should be_a(MetricsCollector::MetricSnapshot)
-        end
-
-        it "contains a snapshot for Project counter" do
-          subject.name.should eq(:counter)
-        end
-
-        it "contains a reading from Project counter" do
-          subject.value.should == 1
-        end
-      end
-    end
+  it "outputs as a formatted string" do
+    snapshot.to_s.should eq("name: 1.0")
   end
 
 end

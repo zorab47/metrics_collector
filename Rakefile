@@ -9,6 +9,6 @@ task :watchr do
 end
 
 task :environment do
-  require 'lib/metrics_collector'
+  require 'metrics_collector'
   require 'spec/sample_app'
 end
