@@ -11,4 +11,8 @@ class SampleApp
     @@counter += 1
   end
 
+  metric :disk_usage do
+    dir = File.dirname(__FILE__)
+    %x[du -s "#{dir}" | cut -f 1].chomp
+  end
 end
