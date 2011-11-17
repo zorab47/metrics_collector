@@ -9,7 +9,7 @@ describe MetricsCollector::Metric do
     MetricsCollector::Metric.new(@creator, :count) { 1.0 }
   end
 
-  it "has an creator" do
+  it "has a creator" do
     metric.creator.should == @creator
   end
 
