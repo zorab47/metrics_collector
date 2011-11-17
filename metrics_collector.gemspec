@@ -6,11 +6,11 @@ Gem::Specification.new do |s|
   s.name        = "metrics_collector"
   s.version     = MetricsCollector::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["TODO: Write your name"]
-  s.email       = ["TODO: Write your email address"]
+  s.authors     = ["Charles Maresh"]
+  s.email       = ["zorab47@gmail.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{Easily define and collect project metrics}
+  s.description = %q{Compile and collect application metrics to help guide project decisions.}
 
   s.rubyforge_project = "metrics_collector"
 
