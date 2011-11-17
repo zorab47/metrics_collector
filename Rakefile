@@ -1,7 +1,7 @@
 require 'bundler'
 Bundler::GemHelper.install_tasks
 
-load 'lib/tasks/metrics_collector.rake'
+require 'metrics_collector/tasks'
 
 task :watchr do
   watchr_config = File.join(File.dirname(__FILE__), "watchr.rb")
